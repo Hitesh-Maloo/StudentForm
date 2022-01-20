@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Styles/Custom.css'
 
-const arr = [
-    {
-        "title": "Surat"
-    },
-    {
-        "title": "Ahemdabad"
-    },
-    {
-        "title": "Kota"
-    }]
+const arr = [{"title": "Surat"},{"title": "Ahemdabad"},{"title": "Kota"}];
 
 function Student() {
     const [values, setValues] = useState({ Email: '', Name: '', PhoneNo: '', City: '', Password: '', Create: '' });
@@ -50,7 +41,7 @@ function Student() {
 
     const handleCity = (event) => {
         event.persist();
-        document.getElementById('opt').style.display = 'block'
+        document.getElementById('opt').style.display = 'block';
     };
 
     const handleBlur = (e) => {
@@ -75,23 +66,25 @@ function Student() {
             setValid(true);
         }
         setSubmitted(true);
-        setTimeout(() => { setSubmitted(false); }, 2000)
+        setTimeout(() => { setSubmitted(false);window.location.reload(true)}, 2000)
     };
 
     const handleAdd = () => {
-        arr.push({ title: values.Create })
-        setShow(true)
+        let ps=[...arr,{title:values.Create}];
+        arr.push({title:values.Create});
+        setData(ps);     
         document.getElementById('createdrop').style.display = 'none';
-        document.getElementById('createButton').style.display = 'none';        
+        document.getElementById('createButton').style.display = 'none'; 
+        document.getElementById('myInput').value = '';                     
+        setShow(true);               
         setTimeout(() => {
-            setShow(false)
+            setShow(false)           
         }, 2000)
 
-    }
+    }        
 
     const filterdata = (e) => {
-        if (e.target.value == '') {
-            //   window.location.reload(true)    
+        if (e.target.value == '') {                
             document.getElementById('createdrop').style.display = 'none';
             document.getElementById('createButton').style.display = 'none';
             setData(arr)
@@ -102,7 +95,7 @@ function Student() {
             document.getElementById('createdrop').style.display = 'block';
             document.getElementById('createButton').style.display = 'block';
         }
-        setData(searchResult);
+        setData(searchResult);        
     }
 
     return (
@@ -157,6 +150,8 @@ function Student() {
                         style={{ margin: '10px 0px 0px 0px' }}
                         onChange={filterdata}
                         onFocus={handleCity}
+                        // value={values.City}
+                        defaultValue={values.City}
                         autoComplete='off'
                     ></input>
                     <div id='opt' className='option-container'>
