@@ -64,9 +64,10 @@ function Student() {
         e.preventDefault();
         if (values.Email && values.Name && values.City && values.PhoneNo && values.Password) {
             setValid(true);
+            setTimeout(() => {window.location.reload(true)}, 2000)
         }
         setSubmitted(true);
-        setTimeout(() => { setSubmitted(false);window.location.reload(true)}, 2000)
+        setTimeout(() => { setSubmitted(false);}, 2000)
     };
 
     const handleAdd = () => {
